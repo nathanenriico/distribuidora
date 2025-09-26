@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VF Distribuidora de Bebidas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <span>VF</span>
+                    </div>
+                </div>
+                <div class="company-info">
+                    <h1>VF DISTRIBUIDORA DE BEBIDAS</h1>
+                    <div class="delivery-info">
+                        <i class="fas fa-truck"></i>
+                        <span>Gratuita a partir de R$ 1.500,00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="status">
+                    <span class="status-indicator closed">Fechado</span>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="social-icons">
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <a href="admin.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Admin</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-content">
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="search-toggle">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-categories">
+                <div class="nav-category" data-category="* CERVEJAS 1 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="nav-text">* CERVEJAS 1 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* CERVEJAS 2 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="nav-text">* CERVEJAS 2 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* CERVEJAS 3 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="nav-text">* CERVEJAS 3 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* DESTILADOS 1 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="nav-text">* DESTILADOS 1 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* DESTILADOS 2 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="nav-text">* DESTILADOS 2 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* DESTILADOS 3 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="nav-text">* DESTILADOS 3 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* REFRIGERANTES 1 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <span class="nav-text">* REFRIGERANTES 1 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* REFRIGERANTES 2 *">
+                    <div class="nav-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <span class="nav-text">* REFRIGERANTES 2 *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* ENERGÉTICO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span class="nav-text">* ENERGÉTICO *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* ÁGUA DE CÔCO/ ÁGUA *">
+                    <div class="nav-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span class="nav-text">* ÁGUA DE CÔCO/ ÁGUA *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* CIGARRO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-smoking"></i>
+                    </div>
+                    <span class="nav-text">* CIGARRO *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* ESSÊNCIAS/ CARVÃO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <span class="nav-text">* ESSÊNCIAS/ CARVÃO *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* SALGADINHOS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <span class="nav-text">* SALGADINHOS *</span>
+                </div>
+                
+                <div class="nav-category" data-category="* MERCEARIA/ BALAS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-candy-cane"></i>
+                    </div>
+                    <span class="nav-text">* MERCEARIA/ BALAS *</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <main class="main-content">
+        <!-- Filtros -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label>Marca:</label>
+                    <select id="brandFilter">
+                        <option value="">Todas as marcas</option>
+                        <option value="skol">Skol</option>
+                        <option value="itaipava">Itaipava</option>
+                        <option value="brahma">Brahma</option>
+                        <option value="imperio">Império</option>
+                        <option value="budweiser">Budweiser</option>
+                        <option value="amstel">Amstel</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Volume:</label>
+                    <select id="volumeFilter">
+                        <option value="">Todos os volumes</option>
+                        <option value="269">269ml</option>
+                        <option value="300">300ml</option>
+                        <option value="350">350ml</option>
+                        <option value="473">473ml</option>
+                        <option value="550">550ml</option>
+                        <option value="600">600ml</option>
+                        <option value="1000">1 Litro</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Preço:</label>
+                    <select id="priceFilter">
+                        <option value="">Todos os preços</option>
+                        <option value="0-30">Até R$ 30</option>
+                        <option value="30-50">R$ 30 - R$ 50</option>
+                        <option value="50-100">R$ 50 - R$ 100</option>
+                        <option value="100+">Acima de R$ 100</option>
+                    </select>
+                </div>
+                <button id="clearFilters" class="clear-btn">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <div class="breadcrumb-container">
+                <a href="#">Início</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="current-category">Cervejas 1</span>
+            </div>
+        </nav>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">* CERVEJAS 1 *</h2>
+                <div class="section-stats">
+                    <span class="product-count">Mostrando <span id="visible-count">25</span> de <span id="total-count">25</span> produtos</span>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="brand-section skol-section">
+                    <h3 class="brand-title">SKOL</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="skol" data-volume="269" data-price="29.40">
+                            <img src="https://via.placeholder.com/80x80/FFD700/000000?text=SKOL" alt="Skol 269ml">
+                            <div class="product-info">
+                                <h4>Skol 269 ml caixa com 15 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 29,40</span>
+                                    <span class="old-price">R$ 33,00</span>
+                                    <span class="discount">-11%</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="skol" data-volume="350" data-price="34.80">
+                            <img src="https://via.placeholder.com/80x80/FFD700/000000?text=SKOL" alt="Skol 350ml">
+                            <div class="product-info">
+                                <h4>Skol 350 ml caixa com 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 34,80</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="skol" data-volume="550" data-price="48.00">
+                            <img src="https://via.placeholder.com/80x80/4169E1/FFFFFF?text=SKOL" alt="Skol 550ml">
+                            <div class="product-info">
+                                <h4>Skol 550 ml caixa com 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 48,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="skol" data-volume="600" data-price="132.00">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=SKOL" alt="Skol 600ml">
+                            <div class="product-info">
+                                <h4>Skol 600 ml caixa com 24 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 132,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="skol" data-volume="1000" data-price="98.40">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=SKOL" alt="Skol 1L">
+                            <div class="product-info">
+                                <h4>Skol 1 litro 12 unidades</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 98,40</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="skol" data-volume="300" data-price="51.60">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=SKOL" alt="Skol 300ml">
+                            <div class="product-info">
+                                <h4>Skol 300 ml caixa com 24 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 51,60</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section itaipava-section">
+                    <h3 class="brand-title">ITAIPAVA</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="itaipava" data-volume="269" data-price="23.40">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=ITAIPAVA" alt="Itaipava 269ml">
+                            <div class="product-info">
+                                <h4>Itaipava 269 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 23,40</span>
+                                    <span class="old-price">R$ 24,00</span>
+                                    <span class="discount">-3%</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="itaipava" data-volume="350" data-price="28.80">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=ITAIPAVA" alt="Itaipava 350ml">
+                            <div class="product-info">
+                                <h4>Itaipava 350 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 28,80</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="itaipava" data-volume="300" data-price="48.00">
+                            <img src="https://via.placeholder.com/80x80/8B0000/FFFFFF?text=ITAIPAVA" alt="Itaipava 300ml">
+                            <div class="product-info">
+                                <h4>Itaipava 300 ml 24 unidades</h4>
+                                <p class="product-note">Garrafa descartável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 48,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="itaipava" data-volume="473" data-price="36.00">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=ITAIPAVA" alt="Itaipava 473ml">
+                            <div class="product-info">
+                                <h4>Itaipava 473 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 36,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="itaipava" data-volume="600" data-price="120.00">
+                            <img src="https://via.placeholder.com/80x80/8B0000/FFFFFF?text=ITAIPAVA" alt="Itaipava 600ml">
+                            <div class="product-info">
+                                <h4>Itaipava 600 ml 24 unidades</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 120,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="itaipava" data-volume="1000" data-price="72.00">
+                            <img src="https://via.placeholder.com/80x80/FF0000/FFFFFF?text=ITAIPAVA" alt="Itaipava 1L">
+                            <div class="product-info">
+                                <h4>Itaipava 1 litro 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 72,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section brahma-section">
+                    <h3 class="brand-title">BRAHMA</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="brahma" data-volume="269" data-price="34.50">
+                            <img src="https://via.placeholder.com/80x80/8B0000/FFFFFF?text=BRAHMA" alt="Brahma Duplo Malte 269ml">
+                            <div class="product-info">
+                                <h4>Brahma duplo malte 269 ml 15 unidade</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 34,50</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="350" data-price="37.80">
+                            <img src="https://via.placeholder.com/80x80/8B0000/FFFFFF?text=BRAHMA" alt="Brahma Duplo Malte 350ml">
+                            <div class="product-info">
+                                <h4>Brahma duplo malte 350 ml 12 unidade</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 37,80</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="600" data-price="144.00">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=BRAHMA" alt="Brahma Duplo Malte 600ml">
+                            <div class="product-info">
+                                <h4>Brahma duplo malte 600 ml 24 unidade</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 144,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="1000" data-price="87.60">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=BRAHMA" alt="Brahma Duplo Malte 1L">
+                            <div class="product-info">
+                                <h4>Brahma duplo malte 1 litro 12 unidad</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 87,60</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="269" data-price="32.25">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=BRAHMA" alt="Brahma Chopp 269ml">
+                            <div class="product-info">
+                                <h4>Brahma chopp 269 ml 15 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 32,25</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="350" data-price="33.00">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=BRAHMA" alt="Brahma Chopp 350ml">
+                            <div class="product-info">
+                                <h4>Brahma chopp 350 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 33,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="300" data-price="48.00">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=BRAHMA" alt="Brahma Chopp 300ml">
+                            <div class="product-info">
+                                <h4>Brahma chopp 300 ml 24 unidades</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 48,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="550" data-price="48.00">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=BRAHMA" alt="Brahma Chopp 550ml">
+                            <div class="product-info">
+                                <h4>Brahma chopp 550 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 48,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="600" data-price="144.00">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=BRAHMA" alt="Brahma Chopp 600ml">
+                            <div class="product-info">
+                                <h4>Brahma chopp 600 ml 24 unidades</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 144,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="brahma" data-volume="1000" data-price="81.60">
+                            <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=BRAHMA" alt="Brahma Chopp 1L">
+                            <div class="product-info">
+                                <h4>Brahma chopp 1 litro 12 unidades</h4>
+                                <p class="product-note">Garrafa retornável</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 81,60</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section budweiser-section">
+                    <h3 class="brand-title">BUDWEISER</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="budweiser" data-volume="269" data-price="20.40">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=BUD" alt="Budweiser 269ml">
+                            <div class="product-info">
+                                <h4>Budweiser 269 ml 8 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 20,40</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="budweiser" data-volume="350" data-price="36.00">
+                            <img src="https://via.placeholder.com/80x80/DC143C/FFFFFF?text=BUD" alt="Budweiser 350ml">
+                            <div class="product-info">
+                                <h4>Budweiser 350 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 36,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="budweiser" data-volume="330" data-price="108.00">
+                            <img src="https://via.placeholder.com/80x80/8B0000/FFFFFF?text=BUD" alt="Budweiser Long Neck">
+                            <div class="product-info">
+                                <h4>Budweiser long neck 330 ml 24 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 108,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section amstel-section">
+                    <h3 class="brand-title">AMSTEL</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="amstel" data-volume="269" data-price="30.00">
+                            <img src="https://via.placeholder.com/80x80/228B22/FFFFFF?text=AMSTEL" alt="Amstel 269ml">
+                            <div class="product-info">
+                                <h4>Amstel 269 ml 12 unidades</h4>
+                                <p class="product-note">Mega promoção</p>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 30,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="amstel" data-volume="350" data-price="33.60">
+                            <img src="https://via.placeholder.com/80x80/228B22/FFFFFF?text=AMSTEL" alt="Amstel 350ml">
+                            <div class="product-info">
+                                <h4>Amstel 350ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 33,60</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="amstel" data-volume="473" data-price="43.99">
+                            <img src="https://via.placeholder.com/80x80/228B22/FFFFFF?text=AMSTEL" alt="Amstel 473ml">
+                            <div class="product-info">
+                                <h4>Amstel 473ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 43,99</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section imperio-section">
+                    <h3 class="brand-title">IMPÉRIO</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="imperio" data-volume="269" data-price="29.85">
+                            <img src="https://via.placeholder.com/80x80/FFD700/000000?text=IMPERIO" alt="Império 269ml">
+                            <div class="product-info">
+                                <h4>Império 269 ml 15 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 29,85</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="imperio" data-volume="350" data-price="28.80">
+                            <img src="https://via.placeholder.com/80x80/FFD700/000000?text=IMPERIO" alt="Império 350ml">
+                            <div class="product-info">
+                                <h4>Império 350 ml 12 unidades</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 28,80</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Menu Lateral -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="search-section">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- Menu com Todas as Categorias -->
+            <div class="icon-menu">
+                <div class="menu-item" data-category="* CERVEJAS 1 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="menu-text">* CERVEJAS 1 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* CERVEJAS 2 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="menu-text">* CERVEJAS 2 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* CERVEJAS 3 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="menu-text">* CERVEJAS 3 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* DESTILADOS 1 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="menu-text">* DESTILADOS 1 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* DESTILADOS 2 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="menu-text">* DESTILADOS 2 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* DESTILADOS 3 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="menu-text">* DESTILADOS 3 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* REFRIGERANTES 1 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <span class="menu-text">* REFRIGERANTES 1 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* REFRIGERANTES 2 *">
+                    <div class="menu-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <span class="menu-text">* REFRIGERANTES 2 *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* ENERGÉTICO *">
+                    <div class="menu-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span class="menu-text">* ENERGÉTICO *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* ÁGUA DE CÔCO/ ÁGUA *">
+                    <div class="menu-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span class="menu-text">* ÁGUA DE CÔCO/ ÁGUA *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* CIGARRO *">
+                    <div class="menu-icon">
+                        <i class="fas fa-smoking"></i>
+                    </div>
+                    <span class="menu-text">* CIGARRO *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* ESSÊNCIAS/ CARVÃO *">
+                    <div class="menu-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <span class="menu-text">* ESSÊNCIAS/ CARVÃO *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* SALGADINHOS *">
+                    <div class="menu-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <span class="menu-text">* SALGADINHOS *</span>
+                </div>
+                
+                <div class="menu-item" data-category="* MERCEARIA/ BALAS *">
+                    <div class="menu-icon">
+                        <i class="fas fa-candy-cane"></i>
+                    </div>
+                    <span class="menu-text">* MERCEARIA/ BALAS *</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Virtual -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>Assistente VF</h4>
+                <span class="chatbot-status">Online</span>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Olá! Sou o assistente virtual da VF Distribuidora. Como posso ajudá-lo hoje?</p>
+                    <span class="message-time">Agora</span>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Digite sua pergunta...">
+            <button id="chatbotSend">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Barra do Carrinho Inferior -->
+    <div class="cart-bottom-bar" id="cartBottomBar" style="display: none;">
+        <div class="cart-info">
+            <span class="cart-items-count" id="cartItemsCount">1 produto</span>
+            <span class="cart-total-price">R$ <span id="cartTotalPrice">29,40</span></span>
+        </div>
+        <button class="view-cart-btn" onclick="openCart()">
+            Veja meu pedido
+        </button>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <button class="back-btn" onclick="closeCart()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Voltar</span>
+                </button>
+                <div class="cart-total-header">
+                    <span>Sua sacola</span>
+                    <span class="total-price">R$ <span id="cartTotal">0,00</span></span>
+                </div>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Seu carrinho está vazio</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="service-selection">
+                    <p>Selecione o tipo de serviço:</p>
+                </div>
+                <button class="delivery-btn" onclick="finalizeOrder()">
+                    <i class="fas fa-truck"></i>
+                    <span>Delivery</span>
+                </button>
+                <p class="service-note">Ao clicar em um serviço, você aceita os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Informações do Cliente -->
+    <div class="customer-modal" id="customerModal">
+        <div class="customer-modal-content">
+            <div class="customer-header">
+                <button class="back-btn" onclick="closeCustomerModal()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3>Adicione seu nome e número de telefone</h3>
+            </div>
+            <form id="customerForm">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="customerName" placeholder="Seu nome é obrigatório" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <div class="phone-input">
+                        <select id="countryCode">
+                            <option value="+55">🇧🇷 +55</option>
+                        </select>
+                        <input type="tel" id="customerPhone" placeholder="Seu número é obrigatório" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Endereço:</label>
+                    <input type="text" id="customerAddress" placeholder="Rua, número, bairro" required>
+                </div>
+                <div class="form-group">
+                    <label>CEP:</label>
+                    <input type="text" id="customerCep" placeholder="00000-000" required>
+                </div>
+                <button type="submit" class="confirm-btn">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante do Chat -->
+    <div class="chat-float-btn" id="chatFloatBtn">
+        <i class="fas fa-comments"></i>
+        <span class="chat-notification">1</span>
+    </div>
+
+    <script src="add-buttons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
