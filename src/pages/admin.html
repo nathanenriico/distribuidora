@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sistema de Gestão</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #bdc3c7;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-area {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #229954;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .search-box {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 250px;
+        }
+
+        .filter-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Sistema</h2>
+        <ul>
+            <li><a href="#" class="active" onclick="showEstoque()">📦 Controle de Estoque</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title" id="pageTitle">Controle de Estoque</h1>
+            <a href="index.html" class="btn">← Sair</a>
+        </div>
+
+        <div class="content-area" id="contentArea">
+            <div class="search-filter">
+                <input type="text" class="search-box" placeholder="Pesquisar produtos...">
+                <select class="filter-btn" onchange="filterByCategory(this.value)">
+                    <option value="">Todas as categorias</option>
+                    <option value="cerveja">Cerveja</option>
+                    <option value="doses">Doses</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="whiskys">Whiskys</option>
+                    <option value="sem-alcool">Sem Álcool</option>
+                    <option value="copao">Copão</option>
+                    <option value="salgadinhos">Salgadinhos</option>
+                </select>
+                <button class="btn" onclick="addStock()">+ Adicionar ao Estoque</button>
+            </div>
+            
+            <!-- CERVEJA -->
+            <div class="category-section" data-category="cerveja">
+                <h3 style="color: #2c3e50; margin: 20px 0 10px 0; border-bottom: 2px solid #3498db; padding-bottom: 5px;">🍺 CERVEJA</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Marca</th>
+                            <th>Volume</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Itaipava</td><td>Itaipava</td><td>350ml</td><td>120</td><td>R$ 4,49</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Amstel</td><td>Amstel</td><td>350ml</td><td>85</td><td>R$ 10,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Heineken</td><td>Heineken</td><td>350ml</td><td>95</td><td>R$ 5,10</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Original</td><td>Original</td><td>350ml</td><td>110</td><td>R$ 4,80</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Skol</td><td>Skol</td><td>350ml</td><td>150</td><td>R$ 4,49</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Império</td><td>Império</td><td>350ml</td><td>75</td><td>R$ 4,29</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Brahma</td><td>Brahma</td><td>350ml</td><td>87</td><td>R$ 4,99</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- DOSES -->
+            <div class="category-section" data-category="doses">
+                <h3 style="color: #2c3e50; margin: 20px 0 10px 0; border-bottom: 2px solid #e74c3c; padding-bottom: 5px;">🥃 DOSES</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Marca</th>
+                            <th>Volume</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Dose Brahma</td><td>Brahma</td><td>350ml</td><td>45</td><td>R$ 7,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Dose Heineken</td><td>Heineken</td><td>350ml</td><td>38</td><td>R$ 8,50</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Dose Skol</td><td>Skol</td><td>350ml</td><td>52</td><td>R$ 5,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Dose Itaipava</td><td>Itaipava</td><td>350ml</td><td>41</td><td>R$ 6,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Dose Amstel</td><td>Amstel</td><td>350ml</td><td>33</td><td>R$ 6,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Dose Original</td><td>Original</td><td>350ml</td><td>39</td><td>R$ 6,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- DRINKS -->
+            <div class="category-section" data-category="drinks">
+                <h3 style="color: #2c3e50; margin: 20px 0 10px 0; border-bottom: 2px solid #9b59b6; padding-bottom: 5px;">🍷 DRINKS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Marca</th>
+                            <th>Volume</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Vodka Smirnoff</td><td>Smirnoff</td><td>1000ml</td><td>25</td><td>R$ 45,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Gin Tanqueray</td><td>Tanqueray</td><td>750ml</td><td>18</td><td>R$ 89,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- WHISKYS -->
+            <div class="category-section" data-category="whiskys">
+                <h3 style="color: #2c3e50; margin: 20px 0 10px 0; border-bottom: 2px solid #f39c12; padding-bottom: 5px;">🥃 WHISKYS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Marca</th>
+                            <th>Volume</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Jack Daniels</td><td>Jack Daniels</td><td>1000ml</td><td>12</td><td>R$ 159,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                        <tr><td>Red Label</td><td>Johnnie Walker</td><td>1000ml</td><td>8</td><td>R$ 89,90</td><td><button class="btn btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterByCategory(category) {
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => {
+                if (category === '' || section.dataset.category === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function addStock() {
+            alert('Funcionalidade de adicionar ao estoque em desenvolvimento');
+        }
+        
+        function filterTable() {
+            // Implementar filtro da tabela
+        }
+    </script>
+</body>
+</html>

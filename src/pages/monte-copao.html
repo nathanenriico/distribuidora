@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte o Seu Copão - VF Distribuidora</title>
+    <link rel="stylesheet" href="../assets/css/pages/main.css">
+    <link rel="stylesheet" href="../assets/css/components/copao-special.css">
+    <link rel="stylesheet" href="../assets/css/components/monte-copao.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="../assets/images/logos/logo_adega.jpg" alt="Coruja" class="logo-image">
+                </div>
+                <div class="company-info">
+                    <h1>ADEGA CORUJÃO</h1>
+                    <div class="header-social">
+                        <i class="fab fa-whatsapp"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="back-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </button>
+                <div class="status">
+                    <span class="status-indicator closed">Fechado</span>
+                </div>
+                <div class="social-icons">
+                    <a href="admin.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Admin</a>
+                    <a href="estoque.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Estoque</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="copao-builder">
+        <div class="builder-header">
+            <h1><i class="fas fa-cocktail"></i> Monte o Seu Copão</h1>
+            <p>Crie sua bebida personalizada em 5 etapas simples!</p>
+        </div>
+
+        <div class="builder-container">
+            <!-- Preview do Copão -->
+            <div class="copao-preview">
+                <div class="glass-container">
+                    <div class="glass" id="virtualGlass">
+                        <div class="liquid-layers" id="liquidLayers"></div>
+                        <div class="glass-logo"></div>
+                    </div>
+                    <div class="glass-label">Seu Copão</div>
+                </div>
+                <div class="price-display">
+                    <span class="total-price">R$ <span id="totalPrice">0,00</span></span>
+                </div>
+            </div>
+
+            <!-- Etapas -->
+            <div class="builder-steps">
+                <!-- Etapa 1: Volume -->
+                <div class="step active" id="step1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Escolha o Volume</h3>
+                    </div>
+                    <div class="size-options">
+                        <div class="size-card" data-size="500" data-multiplier="1">
+                            <div class="size-icon">🍺</div>
+                            <h4 style="color: #000;">500ml</h4>
+                            <p>Tamanho Médio</p>
+                            <span class="size-price">Preço Base</span>
+                        </div>
+                        <div class="size-card" data-size="700" data-multiplier="1.4">
+                            <div class="size-icon">🍻</div>
+                            <h4 style="color: #000;">700ml</h4>
+                            <p>Tamanho Grande</p>
+                            <span class="size-price">+40%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Etapa 2: Base Alcoólica -->
+                <div class="step" id="step2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Escolha a Base Alcoólica</h3>
+                    </div>
+                    <div class="ingredients-grid" id="baseIngredients">
+                        <div class="ingredient-card" data-type="base" data-name="White Horse" data-price-500="22.00" data-price-700="27.00" data-color="#f5f5f5">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">White Horse</h4>
+                            <span class="ingredient-price">R$ 22,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Passport" data-price-500="17.00" data-price-700="20.00" data-color="#e8f4fd">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">Passport</h4>
+                            <span class="ingredient-price">R$ 17,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Jim Bean Apple" data-price-500="24.00" data-price-700="29.00" data-color="#ffcc5c">
+                            <div class="ingredient-icon">🍎</div>
+                            <h4 style="color: #000;">Jim Bean Apple</h4>
+                            <span class="ingredient-price">R$ 24,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Ballantines" data-price-500="20.00" data-price-700="25.00" data-color="#d4a574">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">Ballantines</h4>
+                            <span class="ingredient-price">R$ 20,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Red Label" data-price-500="23.00" data-price-700="28.00" data-color="#dc3545">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">Red Label</h4>
+                            <span class="ingredient-price">R$ 23,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Jack Daniels" data-price-500="30.00" data-price-700="27.00" data-color="#3c1810">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">Jack Daniels</h4>
+                            <span class="ingredient-price">R$ 30,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Old Par" data-price-500="34.00" data-price-700="40.00" data-color="#8b4513">
+                            <div class="ingredient-icon">🥃</div>
+                            <h4 style="color: #000;">Old Par</h4>
+                            <span class="ingredient-price">R$ 34,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="base" data-name="Gin" data-price-500="10.00" data-price-700="15.00" data-color="#e6f7e6">
+                            <div class="ingredient-icon">🍸</div>
+                            <h4 style="color: #000;">Gin</h4>
+                            <span class="ingredient-price">R$ 10,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Etapa 3: Sabores -->
+                <div class="step" id="step3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Escolha os Sabores</h3>
+                    </div>
+                    <div class="ingredients-grid">
+                        <div class="ingredient-card" data-type="flavor" data-name="Manga" data-price="3.00" data-color="#ffcc5c">
+                            <div class="ingredient-icon">🥭</div>
+                            <h4>Manga</h4>
+                            <span class="ingredient-price">+R$ 3,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="flavor" data-name="Pêssego" data-price="3.00" data-color="#ffb07a">
+                            <div class="ingredient-icon">🍑</div>
+                            <h4>Pêssego</h4>
+                            <span class="ingredient-price">+R$ 3,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="flavor" data-name="Limão" data-price="2.50" data-color="#fff700">
+                            <div class="ingredient-icon">🍋</div>
+                            <h4>Limão</h4>
+                            <span class="ingredient-price">+R$ 2,50</span>
+                        </div>
+                        <div class="ingredient-card" data-type="flavor" data-name="Morango" data-price="3.50" data-color="#ff6b9d">
+                            <div class="ingredient-icon">🍓</div>
+                            <h4>Morango</h4>
+                            <span class="ingredient-price">+R$ 3,50</span>
+                        </div>
+                        <div class="ingredient-card" data-type="flavor" data-name="Baunilha" data-price="4.00" data-color="#f5deb3">
+                            <div class="ingredient-icon">🌟</div>
+                            <h4>Baunilha</h4>
+                            <span class="ingredient-price">+R$ 4,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="flavor" data-name="Coco" data-price="3.50" data-color="#ffffff">
+                            <div class="ingredient-icon">🥥</div>
+                            <h4>Coco</h4>
+                            <span class="ingredient-price">+R$ 3,50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Etapa 4: Complementos -->
+                <div class="step" id="step4">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3>Adicione Complementos</h3>
+                    </div>
+                    <div class="ingredients-grid">
+                        <div class="ingredient-card" data-type="complement" data-name="Coca-Cola" data-price="4.00" data-color="#3c1810">
+                            <div class="ingredient-icon">🥤</div>
+                            <h4>Coca-Cola</h4>
+                            <span class="ingredient-price">+R$ 4,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="complement" data-name="Água Tônica" data-price="3.50" data-color="#e6f3ff">
+                            <div class="ingredient-icon">🧊</div>
+                            <h4>Água Tônica</h4>
+                            <span class="ingredient-price">+R$ 3,50</span>
+                        </div>
+                        <div class="ingredient-card" data-type="complement" data-name="Red Bull" data-price="8.00" data-color="#ffcc00">
+                            <div class="ingredient-icon">⚡</div>
+                            <h4>Red Bull</h4>
+                            <span class="ingredient-price">+R$ 8,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="complement" data-name="Suco de Laranja" data-price="3.00" data-color="#ffa500">
+                            <div class="ingredient-icon">🍊</div>
+                            <h4>Suco de Laranja</h4>
+                            <span class="ingredient-price">+R$ 3,00</span>
+                        </div>
+                        <div class="ingredient-card" data-type="complement" data-name="Gelo" data-price="1.00" data-color="#e6f7ff">
+                            <div class="ingredient-icon">🧊</div>
+                            <h4>Gelo</h4>
+                            <span class="ingredient-price">+R$ 1,00</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Etapa 5: Nome -->
+                <div class="step" id="step5">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h3>Nomeie sua Criação</h3>
+                    </div>
+                    <div class="name-section">
+                        <input type="text" id="drinkName" placeholder="Ex: Copão do Nathan" maxlength="30">
+                        <button class="add-to-cart-btn" id="addCustomDrink">
+                            <i class="fas fa-plus"></i>
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegação -->
+        <div class="step-navigation">
+            <button class="nav-btn prev-btn" id="prevBtn" disabled>
+                <i class="fas fa-chevron-left"></i>
+                Anterior
+            </button>
+            <div class="step-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+            <button class="nav-btn next-btn" id="nextBtn">
+                Próximo
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <script src="../assets/js/monte-copao.js"></script>
+</body>
+</html>

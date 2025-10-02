@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque - VF Distribuidora</title>
+    <link rel="stylesheet" href="../assets/css/pages/main.css">
+    <link rel="stylesheet" href="../assets/css/pages/estoque.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <span>VF</span>
+                    </div>
+                </div>
+                <div class="company-info">
+                    <h1>VF DISTRIBUIDORA DE BEBIDAS</h1>
+                    <div class="delivery-info">
+                        <i class="fas fa-warehouse"></i>
+                        <span>Controle de Estoque</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs-nav">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="estoque">
+                <i class="fas fa-boxes"></i>
+                Estoque
+            </button>
+            <button class="tab-btn" data-tab="transacoes">
+                <i class="fas fa-exchange-alt"></i>
+                Transações
+            </button>
+            <button class="tab-btn" data-tab="relatorios">
+                <i class="fas fa-chart-bar"></i>
+                Relatórios
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Aba Estoque -->
+        <section id="estoque-tab" class="tab-content active">
+            <div class="section-header">
+                <h2>Controle de Estoque</h2>
+                <button class="btn-primary" onclick="openTransactionModal()">
+                    <i class="fas fa-plus"></i>
+                    Registrar Transação
+                </button>
+            </div>
+
+            <div class="estoque-grid">
+                <div class="product-item" data-code="SKL269">
+                    <div class="product-info">
+                        <h4>Skol 269ml - 15 unidades</h4>
+                        <span class="product-code">Código: SKL269</span>
+                        <span class="stock-qty">Estoque: 50 unidades</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-transaction" onclick="quickTransaction('SKL269', 'compra')">
+                            <i class="fas fa-arrow-down"></i>
+                            Compra
+                        </button>
+                        <button class="btn-transaction" onclick="quickTransaction('SKL269', 'venda')">
+                            <i class="fas fa-arrow-up"></i>
+                            Venda
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-item" data-code="SKL350">
+                    <div class="product-info">
+                        <h4>Skol 350ml - 12 unidades</h4>
+                        <span class="product-code">Código: SKL350</span>
+                        <span class="stock-qty">Estoque: 30 unidades</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-transaction" onclick="quickTransaction('SKL350', 'compra')">
+                            <i class="fas fa-arrow-down"></i>
+                            Compra
+                        </button>
+                        <button class="btn-transaction" onclick="quickTransaction('SKL350', 'venda')">
+                            <i class="fas fa-arrow-up"></i>
+                            Venda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aba Transações -->
+        <section id="transacoes-tab" class="tab-content">
+            <div class="section-header">
+                <h2>Histórico de Transações</h2>
+                <div class="filters">
+                    <select id="filterType">
+                        <option value="">Todos os tipos</option>
+                        <option value="compra">Compras</option>
+                        <option value="venda">Vendas</option>
+                    </select>
+                    <input type="date" id="filterDate">
+                </div>
+            </div>
+
+            <div class="transactions-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unit.</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <!-- Transações serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Aba Relatórios -->
+        <section id="relatorios-tab" class="tab-content">
+            <div class="section-header">
+                <h2>Relatórios Financeiros</h2>
+                <div class="period-selector">
+                    <select id="reportPeriod">
+                        <option value="daily">Diário</option>
+                        <option value="weekly">Semanal</option>
+                        <option value="monthly">Mensal</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-arrow-up text-success"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>Total Vendas</h3>
+                        <span class="report-value" id="totalSales">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-arrow-down text-danger"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>Total Compras</h3>
+                        <span class="report-value" id="totalPurchases">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-chart-line text-primary"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>Lucro Bruto</h3>
+                        <span class="report-value" id="grossProfit">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="profitChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Transação -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Transação</h3>
+                <button class="close-btn" onclick="closeTransactionModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label>Tipo de Transação:</label>
+                    <select id="transactionType" required>
+                        <option value="">Selecione</option>
+                        <option value="compra">Compra</option>
+                        <option value="venda">Venda</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Produto:</label>
+                    <select id="productCode" required>
+                        <option value="">Selecione</option>
+                        <option value="SKL269">Skol 269ml - 15 unidades</option>
+                        <option value="SKL350">Skol 350ml - 12 unidades</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade:</label>
+                    <input type="number" id="quantity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Unitário (R$):</label>
+                    <input type="number" id="unitPrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Total:</label>
+                    <input type="text" id="totalValue" readonly>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeTransactionModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Registrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin/estoque.js"></script>
+</body>
+</html>

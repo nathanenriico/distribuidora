@@ -1,0 +1,41 @@
+<!-- Modal de Produto -->
+<div id="productModal" class="product-modal">
+    <div class="product-modal-content">
+        <div class="modal-header">
+            <button class="close-modal" onclick="closeProductModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="product-image-section">
+                <img id="modalProductImage" src="" alt="">
+            </div>
+            
+            <div class="product-details-section">
+                <h3 id="modalProductName"></h3>
+                
+                <div class="price-info">
+                    <span class="current-price" id="modalCurrentPrice"></span>
+                    <span class="old-price" id="modalOldPrice" style="display: none;"></span>
+                    <span class="discount" id="modalDiscount" style="display: none;"></span>
+                </div>
+                
+                <div class="comments-section">
+                    <label>Comentários</label>
+                    <input type="text" id="productComments" placeholder="(Opcional)">
+                </div>
+                
+                <div class="quantity-section">
+                    <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="modalQuantity" value="1" min="1">
+                    <button class="qty-btn" onclick="increaseQuantity()">+</button>
+                </div>
+                
+                <button class="add-to-cart-btn" onclick="addToCartFromModal()">
+                    Adicionar <span id="modalTotalPrice"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

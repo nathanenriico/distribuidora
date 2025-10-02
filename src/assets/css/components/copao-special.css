@@ -1,0 +1,169 @@
+/* Estilo para a aba especial Monte seu Copão */
+.nav-category.copao-special {
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    color: #000;
+    border-radius: 8px;
+    margin: 0 5px;
+    animation: pulse 2s infinite;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+}
+
+.nav-category.copao-special::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+.nav-category.copao-special:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 25px rgba(0, 255, 136, 0.8);
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+}
+
+.nav-category.copao-special .nav-icon i {
+    color: #000 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.nav-category.copao-special .nav-text {
+    color: #000;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* Card especial Monte seu Copão */
+.copao-special-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copao-special-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.copao-special-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+}
+
+.copao-card-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.copao-icon {
+    font-size: 4rem;
+    color: #ffd700;
+    animation: bounce 2s infinite;
+}
+
+.copao-info h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.copao-info p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.copao-btn {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copao-btn:hover {
+    background: linear-gradient(45deg, #ffed4e, #ffd700);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+.copao-btn i {
+    animation: sparkle 1.5s infinite;
+}
+
+/* Animações */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: rotate(0deg) translate(0px, 0px); }
+    33% { transform: rotate(120deg) translate(10px, -10px); }
+    66% { transform: rotate(240deg) translate(-10px, 10px); }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .copao-card-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .copao-icon {
+        font-size: 3rem;
+    }
+    
+    .copao-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-category.copao-special .nav-text {
+        font-size: 0.8rem;
+    }
+}

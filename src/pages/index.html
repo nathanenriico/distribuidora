@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adega Corujão - Distribuidora de Bebidas</title>
+    <link rel="stylesheet" href="../assets/css/pages/main.css">
+    <link rel="stylesheet" href="../assets/css/components/product-modal.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-notification.css">
+    <link rel="stylesheet" href="../assets/css/components/chat-button.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-modal.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-bottom-bar.css">
+    <link rel="stylesheet" href="../assets/css/components/copao-special.css">
+    <link rel="stylesheet" href="../assets/css/components/mobile-responsive.css">
+    <link rel="stylesheet" href="../assets/css/components/mobile-menu.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../assets/js/mobile-menu.js" defer></script>
+    <script src="../assets/js/mobile-menu-fix.js" defer></script>
+    <script src="../assets/js/mobile-features.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="../assets/images/logos/logo_adega.jpg" alt="Coruja" class="logo-image">
+                </div>
+                <div class="company-info">
+                    <h1>ADEGA CORUJÃO</h1>
+                    <div class="header-social">
+                        <a href="#" onclick="openWhatsApp()" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/_corujao_adega_/?utm_source=ig_web_button_share_sheet" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/adegacorujao" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="status">
+                    <span class="status-indicator closed">Fechado</span>
+                </div>
+                <div class="social-icons">
+                    <a href="admin.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Admin</a>
+                    <a href="estoque.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Estoque</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-content">
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="search-container" id="searchContainer">
+                <div class="search-input-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Digite o produto que deseja buscar">
+                    <button class="search-btn">Fechar</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="search-toggle" onclick="toggleSearch(event)">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-categories">
+                <a href="index.html" class="nav-category active" data-category="* CERVEJA *">
+                    <div class="nav-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="nav-text">CERVEJA</span>
+                </a>
+                
+                <a href="drinks.html" class="nav-category" data-category="* DRINKS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="nav-text">DRINKS</span>
+                </a>
+                
+                <a href="monte-copao.html" class="nav-category copao-special" data-category="* MONTE SEU COPÃO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <span class="nav-text">MONTE SEU COPÃO</span>
+                </a>
+                
+                <a href="sem-alcool.html" class="nav-category" data-category="* SEM ÁLCOOL *">
+                    <div class="nav-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span class="nav-text">SEM ÁLCOOL</span>
+                </a>
+                
+                <a href="copao.html" class="nav-category" data-category="* COPÃO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <span class="nav-text">COPÃO</span>
+                </a>
+                
+                <a href="whiskys.html" class="nav-category" data-category="* WHISKYS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <span class="nav-text">WHISKYS</span>
+                </a>
+                
+                <a href="doses.html" class="nav-category" data-category="* DOSES *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <span class="nav-text">DOSES</span>
+                </a>
+
+                <a href="salgadinhos.html" class="nav-category" data-category="* SALGADINHOS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <span class="nav-text">SALGADINHOS</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <main class="main-content">
+        <!-- Filtros -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label>Marca:</label>
+                    <select id="brandFilter">
+                        <option value="">Todas as marcas</option>
+                        <option value="itaipava">Itaipava</option>
+                        <option value="amstel">Amstel</option>
+                        <option value="heineken">Heineken</option>
+                        <option value="original">Original</option>
+                        <option value="skol">Skol</option>
+                        <option value="imperio">Império</option>
+                        <option value="brahma">Brahma</option>
+                        <option value="dose">Dose</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Volume:</label>
+                    <select id="volumeFilter">
+                        <option value="">Todos os volumes</option>
+                        <option value="269">269ml</option>
+                        <option value="300">300ml</option>
+                        <option value="330">330ml</option>
+                        <option value="350">350ml</option>
+                        <option value="473">473ml</option>
+                        <option value="550">550ml</option>
+                        <option value="600">600ml</option>
+                        <option value="1000">1 Litro</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Preço:</label>
+                    <select id="priceFilter">
+                        <option value="">Todos os preços</option>
+                        <option value="0-30">Até R$ 30</option>
+                        <option value="30-50">R$ 30 - R$ 50</option>
+                        <option value="50-100">R$ 50 - R$ 100</option>
+                        <option value="100+">Acima de R$ 100</option>
+                    </select>
+                </div>
+                <button id="clearFilters" class="clear-btn">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <div class="breadcrumb-container">
+                <a href="#">Início</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="current-category">Cerveja</span>
+            </div>
+        </nav>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">* CERVEJA *</h2>
+                <div class="section-stats">
+                    <span class="product-count">Mostrando <span id="visible-count">14</span> de <span id="total-count">14</span> produtos</span>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="brand-section itaipava-section">
+                    <h3 class="brand-title">ITAIPAVA</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="itaipava" data-volume="350" data-price="4.49">
+                            <img src="../assets/images/products/cervejas/itaipava.png" alt="Itaipava">
+                            <div class="product-info">
+                                <h4>Itaipava</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 4,49</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section amstel-section">
+                    <h3 class="brand-title">AMSTEL</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="amstel" data-volume="350" data-price="10.90">
+                            <img src="../assets/images/products/cervejas/amstel.png" alt="Amstel">
+                            <div class="product-info">
+                                <h4>Amstel</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 10,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section heineken-section">
+                    <h3 class="brand-title">HEINEKEN</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="heineken" data-volume="350" data-price="5.10">
+                            <img src="../assets/images/products/cervejas/heineken.png" alt="Heineken">
+                            <div class="product-info">
+                                <h4>Heineken</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 5,10</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section original-section">
+                    <h3 class="brand-title">ORIGINAL</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="original" data-volume="350" data-price="4.80">
+                            <img src="../assets/images/products/cervejas/original.png" alt="Original">
+                            <div class="product-info">
+                                <h4>Original</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 4,80</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section skol-section">
+                    <h3 class="brand-title">SKOL</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="skol" data-volume="350" data-price="4.49">
+                            <img src="../assets/images/products/cervejas/skol.png" alt="Skol">
+                            <div class="product-info">
+                                <h4>Skol</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 4,49</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section imperio-section">
+                    <h3 class="brand-title">IMPÉRIO</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="imperio" data-volume="350" data-price="4.29">
+                            <img src="../assets/images/products/cervejas/imperio.png" alt="Império">
+                            <div class="product-info">
+                                <h4>Império</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 4,29</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section brahma-section">
+                    <h3 class="brand-title">BRAHMA</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="brahma" data-volume="350" data-price="4.99">
+                            <img src="../assets/images/products/cervejas/brahma.png" alt="Brahma">
+                            <div class="product-info">
+                                <h4>Brahma</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 4,99</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="brand-section dose-section">
+                    <h3 class="brand-title">DOSE</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="7.90">
+                            <img src="../assets/images/products/cervejas/brahma.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #e74c3c;"></i> Dose Brahma</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 7,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="8.50">
+                            <img src="../assets/images/products/cervejas/heineken.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #27ae60;"></i> Dose Heineken</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 8,50</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="5.90">
+                            <img src="../assets/images/products/cervejas/skol.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #f39c12;"></i> Dose Skol</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 5,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="6.90">
+                            <img src="../assets/images/products/cervejas/itaipava.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #3498db;"></i> Dose Itaipava</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 6,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="6.90">
+                            <img src="../assets/images/products/cervejas/amstel.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #9b59b6;"></i> Dose Amstel</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 6,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="dose" data-volume="350" data-price="6.90">
+                            <img src="../assets/images/products/cervejas/original.png" alt="Dose">
+                            <div class="product-info">
+                                <h4><i class="fas fa-beer" style="color: #e67e22;"></i> Dose Original</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 6,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+
+
+
+    
+    <!-- Barra do Carrinho Inferior -->
+    <div class="cart-bottom-bar" id="cartBottomBar" style="display: none;">
+        <div class="cart-summary">
+            <span class="cart-items-count" id="cartItemsCount">1 produto</span>
+            <span class="cart-total-price">R$ <span id="cartTotalPrice">29,40</span></span>
+        </div>
+        <button class="view-cart-btn" onclick="window.open('cart.html', '_self')">
+            Veja meu pedido
+        </button>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content cart-fullscreen">
+            <div class="cart-header">
+                <button class="back-btn" onclick="closeCart()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Voltar</span>
+                </button>
+                <div class="cart-total-header">
+                    <span>Sua sacola</span>
+                    <span class="total-price">R$ <span id="cartTotal">0,00</span></span>
+                </div>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Itens serão inseridos aqui dinamicamente -->
+            </div>
+            <div class="cart-footer">
+                <div class="service-selection">
+                    <p>Opções de Entrega:</p>
+                    <div class="delivery-options">
+                        <div class="delivery-option" onclick="selectDelivery('rapida')">
+                            <div class="radio-circle"></div>
+                            <div class="option-info">
+                                <span class="option-title">Entrega Rápida</span>
+                                <span class="option-time">Até 2 horas</span>
+                            </div>
+                            <span class="option-price">R$ 7,00</span>
+                        </div>
+                        <div class="delivery-option" onclick="selectDelivery('normal')">
+                            <div class="radio-circle"></div>
+                            <div class="option-info">
+                                <span class="option-title">Entrega Normal</span>
+                                <span class="option-time">Até 4 horas</span>
+                            </div>
+                            <span class="option-price">R$ 5,00</span>
+                        </div>
+                        <div class="delivery-option" onclick="selectDelivery('retirada')">
+                            <div class="radio-circle"></div>
+                            <div class="option-info">
+                                <span class="option-title">Retirada no Local</span>
+                                <span class="option-time">Imediato</span>
+                            </div>
+                            <span class="option-price">Grátis</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="delivery-btn" onclick="finalizeOrder()" id="finalizeBtn" disabled>
+                    <i class="fas fa-truck"></i>
+                    <span>Continuar</span>
+                </button>
+                <p class="service-note">Ao continuar, você aceita os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Informações do Cliente -->
+    <div class="customer-modal" id="customerModal">
+        <div class="customer-modal-content">
+            <div class="customer-header">
+                <button class="back-btn" onclick="closeCustomerModal()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3>Adicione seu nome e número de telefone</h3>
+            </div>
+            <form id="customerForm">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="customerName" placeholder="Seu nome é obrigatório" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <div class="phone-input">
+                        <select id="countryCode">
+                            <option value="+55">🇧🇷 +55</option>
+                        </select>
+                        <input type="tel" id="customerPhone" placeholder="Seu número é obrigatório" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Endereço:</label>
+                    <input type="text" id="customerAddress" placeholder="Rua, número, bairro" required>
+                </div>
+                <div class="form-group">
+                    <label>CEP:</label>
+                    <input type="text" id="customerCep" placeholder="00000-000" required>
+                </div>
+                <button type="submit" class="confirm-btn">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Modal de Produto -->
+    <div id="productModal" class="product-modal">
+        <div class="product-modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="product-image-section">
+                    <img id="modalProductImage" src="" alt="">
+                </div>
+                
+                <div class="product-details-section">
+                    <h3 id="modalProductName"></h3>
+                    
+                    <div class="price-info">
+                        <span class="current-price" id="modalCurrentPrice"></span>
+                        <span class="old-price" id="modalOldPrice" style="display: none;"></span>
+                        <span class="discount" id="modalDiscount" style="display: none;"></span>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <label>Comentários</label>
+                        <input type="text" id="productComments" placeholder="(Opcional)">
+                    </div>
+                    
+                    <div class="quantity-section">
+                        <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                        <input type="number" id="modalQuantity" value="1" min="1">
+                        <button class="qty-btn" onclick="increaseQuantity()">+</button>
+                    </div>
+                    
+                    <button class="add-to-cart-btn" onclick="addToCartFromModal()">
+                        Adicionar <span id="modalTotalPrice"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/modules/cart-notification.js"></script>
+    <script src="../assets/js/modules/product-modal.js"></script>
+    <script src="../assets/js/delivery-calculator.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script>
+        let selectedDelivery = null;
+        
+        function selectDelivery(type) {
+            selectedDelivery = type;
+            
+            // Remove seleção anterior
+            document.querySelectorAll('.delivery-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Adiciona seleção atual
+            event.currentTarget.classList.add('selected');
+            
+            // Habilita botão
+            document.getElementById('finalizeBtn').disabled = false;
+        }
+        
+        function finalizeOrder() {
+            if (!selectedDelivery) {
+                alert('Selecione uma opção de entrega');
+                return;
+            }
+            
+            // Continuar com o pedido
+            alert('Pedido finalizado com ' + selectedDelivery);
+        }
+        
+        function openWhatsApp() {
+            const phone = '5511941716617';
+            const message = 'Olá! Gostaria de fazer um pedido na Adega Corujão';
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Detecta se é mobile ou desktop
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Mobile: abre o app do WhatsApp
+                window.open(`whatsapp://send?phone=${phone}&text=${encodedMessage}`, '_blank');
+            } else {
+                // Desktop: abre WhatsApp Web
+                window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>

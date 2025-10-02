@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adega Corujão - Drinks</title>
+    <link rel="stylesheet" href="../assets/css/pages/main.css">
+    <link rel="stylesheet" href="../assets/css/components/product-modal.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-notification.css">
+    <link rel="stylesheet" href="../assets/css/components/chat-button.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-modal.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-bottom-bar.css">
+    <link rel="stylesheet" href="../assets/css/components/copao-special.css">
+    <link rel="stylesheet" href="../assets/css/components/mobile-responsive.css">
+    <link rel="stylesheet" href="../assets/css/components/mobile-menu.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../assets/js/mobile-menu.js" defer></script>
+    <script src="../assets/js/mobile-menu-fix.js" defer></script>
+    <script src="../assets/js/mobile-features.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <img src="../assets/images/logos/logo_adega.jpg" alt="Coruja" class="logo-image">
+                    </div>
+                </div>
+                <div class="company-info">
+                    <h1>ADEGA CORUJÃO</h1>
+                    <div class="header-social">
+                        <i class="fab fa-whatsapp"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="status">
+                    <span class="status-indicator closed">Fechado</span>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="social-icons">
+                    <a href="admin.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Admin</a>
+                    <a href="estoque.html" style="color: #6c757d; margin-left: 1rem; font-size: 0.8rem; text-decoration: none;">Estoque</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-content">
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="search-container" id="searchContainer">
+                <div class="search-input-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Digite o produto que deseja buscar">
+                    <button class="search-btn">Fechar</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="search-toggle" onclick="toggleSearch(event)">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-categories">
+                <a href="index.html" class="nav-category" data-category="* CERVEJA *">
+                    <div class="nav-icon">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <span class="nav-text">CERVEJA</span>
+                </a>
+                
+                <a href="drinks.html" class="nav-category active" data-category="* DRINKS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <span class="nav-text">DRINKS</span>
+                </a>
+                
+                <a href="monte-copao.html" class="nav-category copao-special" data-category="* MONTE SEU COPÃO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <span class="nav-text">MONTE SEU COPÃO</span>
+                </a>
+                
+                <a href="sem-alcool.html" class="nav-category" data-category="* SEM ÁLCOOL *">
+                    <div class="nav-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span class="nav-text">SEM ÁLCOOL</span>
+                </a>
+                
+                <a href="copao.html" class="nav-category" data-category="* COPÃO *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <span class="nav-text">COPÃO</span>
+                </a>
+                
+                <a href="whiskys.html" class="nav-category" data-category="* WHISKYS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <span class="nav-text">WHISKYS</span>
+                </a>
+                
+                <a href="doses.html" class="nav-category" data-category="* DOSES *">
+                    <div class="nav-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <span class="nav-text">DOSES</span>
+                </a>
+
+                <a href="salgadinhos.html" class="nav-category" data-category="* SALGADINHOS *">
+                    <div class="nav-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <span class="nav-text">SALGADINHOS</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Filtros -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label>Marca:</label>
+                    <select id="brandFilter">
+                        <option value="">Todas as marcas</option>
+                        <option value="smirnoff">Smirnoff</option>
+                        <option value="absolut">Absolut</option>
+                        <option value="bells">Bell's</option>
+                        <option value="ballantines">Ballantine's</option>
+                        <option value="jackdaniels">Jack Daniel's</option>
+                        <option value="johnniewalker">Johnnie Walker</option>
+                        <option value="eternity">Eternity</option>
+                        <option value="ciroc">Ciroc</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Volume:</label>
+                    <select id="volumeFilter">
+                        <option value="">Todos os volumes</option>
+                        <option value="200">200ml</option>
+                        <option value="375">375ml</option>
+                        <option value="500">500ml</option>
+                        <option value="700">700ml</option>
+                        <option value="750">750ml</option>
+                        <option value="900">900ml</option>
+                        <option value="1000">1 Litro</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Preço:</label>
+                    <select id="priceFilter">
+                        <option value="">Todos os preços</option>
+                        <option value="0-30">Até R$ 30</option>
+                        <option value="30-50">R$ 30 - R$ 50</option>
+                        <option value="50-100">R$ 50 - R$ 100</option>
+                        <option value="100+">Acima de R$ 100</option>
+                    </select>
+                </div>
+                <button id="clearFilters" class="clear-btn">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <div class="breadcrumb-container">
+                <a href="index.html">Início</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="current-category">Drinks</span>
+            </div>
+        </nav>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">* DRINKS *</h2>
+                <div class="section-stats">
+                    <span class="product-count">Mostrando <span id="visible-count">6</span> de <span id="total-count">6</span> produtos</span>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="brand-section drinks-section">
+                    <h3 class="brand-title">DRINKS</h3>
+                    <div class="brand-products">
+                        <div class="product-card" data-brand="caipirinha" data-volume="350" data-price="15.90">
+                            <img src="../assets/images/products/drinks/Caipirinha.png" alt="Caipirinha">
+                            <div class="product-info">
+                                <h4>Caipirinha</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 15,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="caipivodka" data-volume="350" data-price="15.90">
+                            <img src="../assets/images/products/drinks/caipivodka.png" alt="Caipivodka">
+                            <div class="product-info">
+                                <h4>Caipivodka</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 15,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="gin-tonica" data-volume="350" data-price="15.90">
+                            <img src="../assets/images/products/drinks/gin tonica.png" alt="Gin Tônica">
+                            <div class="product-info">
+                                <h4>Gin Tônica</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 15,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="cuba" data-volume="350" data-price="16.00">
+                            <img src="../assets/images/products/drinks/cuba.png" alt="Cuba">
+                            <div class="product-info">
+                                <h4>Cuba</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 16,00</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="bubbalo" data-volume="350" data-price="15.90">
+                            <img src="../assets/images/products/drinks/bubbalo drink.png" alt="Bubbalo">
+                            <div class="product-info">
+                                <h4>Bubbalo</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 15,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+
+                        <div class="product-card" data-brand="espanhola" data-volume="350" data-price="15.90">
+                            <img src="../assets/images/products/drinks/espanhola.png" alt="Espanhola">
+                            <div class="product-info">
+                                <h4>Espanhola</h4>
+                                <div class="price-section">
+                                    <span class="current-price">R$ 15,90</span>
+                                </div>
+                            </div>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/modules/cart-notification.js"></script>
+    <script src="../assets/js/modules/product-modal.js"></script>
+    <script src="../assets/js/delivery-calculator.js"></script>
+    <script src="../assets/js/search.js"></script>
+</body>
+</html>

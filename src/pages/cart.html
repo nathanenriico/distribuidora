@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - VF Distribuidora</title>
+    <link rel="stylesheet" href="../assets/css/pages/main.css">
+    <link rel="stylesheet" href="../assets/css/components/cart-modal.css">
+    <link rel="stylesheet" href="../assets/css/components/delivery-modal.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="cart-modal-content cart-fullscreen" style="position: relative; transform: none; top: 0; left: 0;">
+        <div class="cart-header">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+                <span>Voltar</span>
+            </button>
+            <div class="cart-total-header">
+                <span>Sua sacola</span>
+                <span class="total-price">R$ <span id="cartTotal">0,00</span></span>
+            </div>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Itens serão inseridos aqui dinamicamente -->
+        </div>
+        <div class="cart-footer">
+            <div class="service-selection">
+                <p>Selecione o tipo de serviço:</p>
+            </div>
+            <button class="delivery-btn" onclick="openDeliveryModal()">
+                <i class="fas fa-truck"></i>
+                <span>Delivery</span>
+            </button>
+            <p class="service-note">Ao clicar em um serviço, você aceita os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a></p>
+        </div>
+    </div>
+
+    <!-- Modal de Delivery -->
+    <div id="deliveryModal" class="delivery-modal">
+        <div class="delivery-modal-content">
+            <div class="delivery-header">
+                <button class="back-btn" onclick="closeDeliveryModal()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3>Adicione seu nome e número de telefone</h3>
+            </div>
+            <form id="deliveryForm">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="deliveryName" placeholder="Seu nome é obrigatório" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <div class="phone-input">
+                        <select id="deliveryCountryCode">
+                            <option value="+55">🇧🇷 +55</option>
+                        </select>
+                        <input type="tel" id="deliveryPhone" placeholder="Seu número é obrigatório" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Endereço:</label>
+                    <input type="text" id="deliveryAddress" placeholder="Rua, número, bairro" required>
+                </div>
+                <div class="form-group">
+                    <label>CEP:</label>
+                    <input type="text" id="deliveryCep" placeholder="00000-000" required>
+                    <div id="cepError" class="error"></div>
+                </div>
+                
+                <div id="shippingInfo" class="shipping-info">
+                    <h4>Opções de Entrega:</h4>
+                    <div id="shippingOptions"></div>
+                </div>
+                
+                <button type="submit" class="confirm-btn" id="confirmBtn" disabled>Calcular Frete</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/modules/cart-notification.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartPage();
+        });
+
+        function loadCartPage() {
+            const itemsContainer = document.getElementById('cartItems');
+            const totalElement = document.getElementById('cartTotal');
+            
+            itemsContainer.innerHTML = '';
+            
+            if (cartItems.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Seu carrinho está vazio</p>
+                    </div>
+                `;
+                totalElement.textContent = '0,00';
+            } else {
+                let total = 0;
+                
+                cartItems.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item-full';
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <span class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="remove-item" onclick="removeFromCartPage(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <div class="quantity-controls">
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="add-more" onclick="addMoreToCartPage(${index})">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    itemsContainer.appendChild(itemElement);
+                });
+                
+                totalElement.textContent = total.toFixed(2).replace('.', ',');
+            }
+        }
+
+        function removeFromCartPage(index) {
+            cartItems.splice(index, 1);
+            saveCartToStorage();
+            loadCartPage();
+        }
+
+        function addMoreToCartPage(index) {
+            cartItems[index].quantity += 1;
+            saveCartToStorage();
+            loadCartPage();
+        }
+
+        function openDeliveryModal() {
+            document.getElementById('deliveryModal').style.display = 'block';
+        }
+
+        function closeDeliveryModal() {
+            document.getElementById('deliveryModal').style.display = 'none';
+        }
+
+        let selectedShipping = null;
+        let shippingCalculated = false;
+
+        // Calcular frete por CEP (Atibaia e região)
+        async function calculateShipping(cep, address) {
+            const cleanCep = cep.replace(/\D/g, '');
+            
+            if (cleanCep.length !== 8) {
+                document.getElementById('cepError').textContent = 'CEP deve ter 8 dígitos';
+                return false;
+            }
+            
+            document.getElementById('cepError').textContent = '';
+            document.getElementById('shippingOptions').innerHTML = '<div class="loading">Calculando frete...</div>';
+            document.getElementById('shippingInfo').style.display = 'block';
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            try {
+                const shippingOptions = calculateShippingByCep(cleanCep);
+                
+                let optionsHtml = '';
+                shippingOptions.forEach((option, index) => {
+                    optionsHtml += `
+                        <div class="shipping-option" onclick="selectShipping(${index})" data-index="${index}">
+                            <div>
+                                <div class="shipping-name">${option.name}</div>
+                                <div class="shipping-time">${option.time}</div>
+                            </div>
+                            <div class="shipping-price">R$ ${option.price.toFixed(2).replace('.', ',')}</div>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('shippingOptions').innerHTML = optionsHtml;
+                window.shippingOptions = shippingOptions;
+                return true;
+                
+            } catch (error) {
+                document.getElementById('shippingOptions').innerHTML = '<div class="error">Erro ao calcular frete. Tente novamente.</div>';
+                return false;
+            }
+        }
+        
+        // Calcular frete baseado no CEP (Atibaia e região)
+        function calculateShippingByCep(cep) {
+            const firstFive = cep.substring(0, 5);
+            
+            // Atibaia Centro (12940-000 a 12949-999)
+            if (firstFive >= '12940' && firstFive <= '12949') {
+                return [
+                    { name: 'Entrega Rápida', time: 'Até 1 hora', price: 5.00 }
+                ];
+            }
+            // Atibaia Bairros (12950-000 a 12959-999)
+            else if (firstFive >= '12950' && firstFive <= '12959') {
+                return [
+                    { name: 'Entrega Rápida', time: 'Até 2 horas', price: 7.00 }
+                ];
+            }
+            // Bom Jesus dos Perdões (12960-000 a 12969-999)
+            else if (firstFive >= '12960' && firstFive <= '12969') {
+                return [
+                    { name: 'Entrega Padrão', time: 'Até 3 horas', price: 8.00 }
+                ];
+            }
+            // Jarinu (13240-000 a 13249-999)
+            else if (firstFive >= '13240' && firstFive <= '13249') {
+                return [
+                    { name: 'Entrega Padrão', time: 'Até 4 horas', price: 10.00 }
+                ];
+            }
+            // Campo Limpo Paulista (13230-000 a 13239-999)
+            else if (firstFive >= '13230' && firstFive <= '13239') {
+                return [
+                    { name: 'Entrega Padrão', time: 'Até 5 horas', price: 12.00 }
+                ];
+            }
+            // Outras cidades da região
+            else {
+                return [
+                    { name: 'Entrega Regional', time: '1-2 dias úteis', price: 15.00 }
+                ];
+            }
+        }
+        
+        function selectShipping(index) {
+            document.querySelectorAll('.shipping-option').forEach(opt => {
+                opt.style.backgroundColor = '';
+                opt.style.border = '1px solid #e9ecef';
+            });
+            
+            const selectedOption = document.querySelector(`[data-index="${index}"]`);
+            selectedOption.style.backgroundColor = '#e3f2fd';
+            selectedOption.style.border = '1px solid #2196f3';
+            
+            selectedShipping = window.shippingOptions[index];
+            shippingCalculated = true;
+            
+            document.getElementById('confirmBtn').disabled = false;
+            document.getElementById('confirmBtn').textContent = 'Finalizar Pedido';
+        }
+        
+        function checkAndCalculateShipping() {
+            const cep = document.getElementById('deliveryCep').value;
+            const address = document.getElementById('deliveryAddress').value;
+            
+            if (cep.length >= 8 && address.length > 10) {
+                calculateShipping(cep, address);
+            }
+        }
+        
+        document.getElementById('deliveryCep').addEventListener('blur', checkAndCalculateShipping);
+        document.getElementById('deliveryAddress').addEventListener('blur', checkAndCalculateShipping);
+        
+        document.getElementById('deliveryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!shippingCalculated) {
+                const cep = document.getElementById('deliveryCep').value;
+                const address = document.getElementById('deliveryAddress').value;
+                calculateShipping(cep, address);
+                return;
+            }
+            
+            const name = document.getElementById('deliveryName').value;
+            const phone = document.getElementById('deliveryPhone').value;
+            const address = document.getElementById('deliveryAddress').value;
+            const cep = document.getElementById('deliveryCep').value;
+            
+            let message = `*PEDIDO VF DISTRIBUIDORA*%0A%0A`;
+            message += `*DADOS DO CLIENTE*%0A`;
+            message += `Nome: ${name}%0A`;
+            message += `Telefone: ${phone}%0A`;
+            message += `Endereço: ${address}%0A`;
+            message += `CEP: ${cep}%0A%0A`;
+            message += `*ITENS DO PEDIDO*%0A`;
+            message += `------------------------%0A`;
+            
+            let subtotal = 0;
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                message += `${index + 1}. ${item.name}%0A`;
+                message += `   Qtd: ${item.quantity}x | Valor: R$ ${itemTotal.toFixed(2).replace('.', ',')}%0A%0A`;
+            });
+            
+            message += `------------------------%0A`;
+            message += `*RESUMO DO PEDIDO*%0A`;
+            message += `Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}%0A`;
+            message += `Frete (${selectedShipping.name}): R$ ${selectedShipping.price.toFixed(2).replace('.', ',')}%0A`;
+            message += `------------------------%0A`;
+            message += `*TOTAL: R$ ${(subtotal + selectedShipping.price).toFixed(2).replace('.', ',')}*%0A%0A`;
+            message += `Tempo de entrega: ${selectedShipping.time}%0A`;
+            message += `Pedido confirmado`;
+            
+            const whatsappUrl = `https://wa.me/5511941716617?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+            
+            closeDeliveryModal();
+        });
+    </script>
+</body>
+</html>
